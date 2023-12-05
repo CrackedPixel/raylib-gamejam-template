@@ -348,35 +348,35 @@ clean:
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
 	ifeq ($(PLATFORM_OS),WINDOWS)
 		ifeq ($(HOST_OS),WINDOWS)
-			del *.o *.exe /s
+			del ${PROJECT_BUILD_PATH}/*.o ${PROJECT_BUILD_PATH}/*.exe /s
 		else ifeq ($(HOST_OS),OSX)
-			rm -fv *.o *.exe
+			rm -fv ${PROJECT_BUILD_PATH}/*.o ${PROJECT_BUILD_PATH}/*.exe
 		else ifeq ($(HOST_OS),LINUX)
-			rm -fv *.o *.exe	
+			rm -fv ${PROJECT_BUILD_PATH}/*.o ${PROJECT_BUILD_PATH}/*.exe	
 		else
 			@echo "Unable to clean: invalid HOST_OS detected: ${HOST_OS}"
 		endif
 	endif
 	ifeq ($(PLATFORM_OS),LINUX)
 		ifeq ($(HOST_OS),WINDOWS)
-			del *.o /s
+			del ${PROJECT_BUILD_PATH}/*.o /s
 		else ifeq ($(HOST_OS),OSX)
-			find . -type f -executable -delete
-			rm -f *.o
+			find ${PROJECT_BUILD_PATH} -type f -executable -delete
+			rm -f ${PROJECT_BUILD_PATH}/*.o
 		else ifeq ($(HOST_OS),LINUX)
-			find . -type f -executable -delete
-			rm -f *.o
+			find ${PROJECT_BUILD_PATH} -type f -executable -delete
+			rm -f ${PROJECT_BUILD_PATH}/*.o
 		else
 			@echo "Unable to clean: invalid HOST_OS detected: ${HOST_OS}"
 		endif
 	endif
 	ifeq ($(PLATFORM_OS),OSX)
 		ifeq ($(HOST_OS),WINDOWS)
-			del *.o external/*.o /s
+			del ${PROJECT_BUILD_PATH}/*.o external/*.o /s
 		else ifeq ($(HOST_OS),OSX)
-			rm -f *.o external/*.o $(PROJECT_NAME)
+			rm -f ${PROJECT_BUILD_PATH}/*.o external/*.o ${PROJECT_BUILD_PATH}/$(PROJECT_NAME)
 		else ifeq ($(HOST_OS),LINUX)
-			rm -f *.o external/*.o $(PROJECT_NAME)
+			rm -f ${PROJECT_BUILD_PATH}/*.o external/*.o ${PROJECT_BUILD_PATH}/$(PROJECT_NAME)
 		else
 			@echo "Unable to clean: invalid HOST_OS detected: ${HOST_OS}"
 		endif
@@ -384,24 +384,24 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
 endif
 ifeq ($(PLATFORM),PLATFORM_DRM)
 	ifeq ($(HOST_OS),WINDOWS)
-		del *.o /s
+		del ${PROJECT_BUILD_PATH}/*.o /s
 	else ifeq ($(HOST_OS),OSX)
-		find . -type f -executable -delete
-		rm -f *.o
+		find ${PROJECT_BUILD_PATH} -type f -executable -delete
+		rm -f ${PROJECT_BUILD_PATH}/*.o
 	else ifeq ($(HOST_OS),LINUX)
-		find . -type f -executable -delete
-		rm -f *.o
+		find ${PROJECT_BUILD_PATH} -type f -executable -delete
+		rm -f ${PROJECT_BUILD_PATH}/*.o
 	else
 		@echo "Unable to clean: invalid HOST_OS detected: ${HOST_OS}"
 	endif
 endif
 ifeq ($(PLATFORM),PLATFORM_WEB)
 	ifeq ($(HOST_OS),WINDOWS)
-		del *.o *.html *.js /s
+		del ${PROJECT_BUILD_PATH}/*.o ${PROJECT_BUILD_PATH}/*.html ${PROJECT_BUILD_PATH}/*.js /s
 	else ifeq ($(HOST_OS),OSX)
-		rm -fv *.o *.html *.js
+		rm -fv ${PROJECT_BUILD_PATH}/*.o ${PROJECT_BUILD_PATH}/*.html ${PROJECT_BUILD_PATH}/*.js
 	else ifeq ($(HOST_OS),LINUX)
-		rm -fv *.o *.html *.js
+		rm -fv ${PROJECT_BUILD_PATH}/*.o ${PROJECT_BUILD_PATH}/*.html ${PROJECT_BUILD_PATH}/*.js
 	else
 		@echo "Unable to clean: invalid HOST_OS detected: ${HOST_OS}"
 	endif
